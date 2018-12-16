@@ -1,2 +1,0 @@
-# myblog
-zhaoyu's blog
