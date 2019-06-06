@@ -76,4 +76,4 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-theme: jekyll-theme-hacker
+theme: jekyll-theme-architect
