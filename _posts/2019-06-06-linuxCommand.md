@@ -1,7 +1,7 @@
 ---
 layout: post
-title: linux常用命令
-author: 赵昱
+title: linux command
+author: zhaoyu
 ---
 
 linux常用命令
