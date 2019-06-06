@@ -1,80 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+{% include head.html %}
 
-    {% include meta.html %}
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-  </head>
-
-  <body>
-    
-    <div class="intro-header">
-        <div class="wrapper-masthead">
-         <div class="container">
-           <header class="masthead clearfix">
-             <div class="site-info">
-               <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-               <p class="site-description">{{ site.description }}</p>
-             </div>
-             <nav>
-               <a href="{{ site.baseurl }}/">Blog</a>
-               <a href="{{ site.baseurl }}/about">About</a>
-               <a href="{{ site.baseurl }}/projects">Projects</a>
-             </nav>
-           </header>
-         </div>
-       </div>
-       
-        <div class="container">
-            <div class="space-small"></div>
-           
-            <div class="centered">
-              <ul class="ch-grid">
-                <li>
-                    <div class="ch-item ch-img-1">				
-                        <div class="ch-info-wrap">
-                            <div class="ch-info">
-                                <div class="ch-info-front ch-img-1"></div>
-                                <div class="ch-info-back">
-                                    <h3>{{site.name}}</h3>
-                                    <p></br><a href="https://linkedin.com/in/{{ site.footer-links.linkedin }}">View on LinkedIn</a></p>
-                                </div>	
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-             
-             <div class="space-medium"></div>
-            
-        </div>
+<body>
+  <div id="wrapper">
+    {% include header.html %}
+    <div class="container">
+      <section id="main_content">
+        {{ content }}
+      </section>
     </div>
+  </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page == 1 %}
+    <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&laquo;</a>
+    {% elsif paginator.previous_page%}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&laquo;</a>
+    {% else %}
+    <span class="page-item">&laquo;</span>
+    {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
+    <span class="page-item">{{ page }}</span>
+    {% elsif page == 1 %}
+    <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">{{ page }}</a>
+    {% else %}
+    <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="page-item">{{ page }}</a>
+    {% endif %} {% endfor %} {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&raquo;</a>
+    {% else %}
+    <span class="page-item">&raquo;</span>
+    {% endif %}
+  </div>
+  {% endif %} {% include footer.html %}
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-            <div class="svg-icon">
-          {% include svg-icons.html %}
-            </div>
-        </footer>
-      </div>
-    </div>
-
+  {% if site.google_analytics %}
     {% include analytics.html %}
-  </body>
+  {% endif %}
+</body>
+
 </html>

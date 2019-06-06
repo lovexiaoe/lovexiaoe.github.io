@@ -1,15 +1,9 @@
 ---
-layout: blog
+layout: default
 ---
 
-<article class="post">
- <div class="space-extra-small">
- </div>
-
-  <div class="entry">
-    {{ content }}
-  </div>
-
-  {% include disqus.html %}
+<article>
+  <h2>{{ page.title }}</h2>
+  <time datetime="{{ page.date | date_to_xmlschema }}" class="by-line">{{ page.date | date_to_string }}</time>
+  {{ content }}
 </article>
-
