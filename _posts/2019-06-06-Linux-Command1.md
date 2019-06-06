@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Linux Command
+title: Linux常用命令1
 author: 赵昱
 ---
 
-linux 命令。
+linux 命令1。
 
 ## The Eternal Lorem Ipsum? 
 -----
