@@ -1,0 +1,24 @@
+---
+title: linux命令-非root用户安装程序
+published: true
+---
+
+
+## 非root用户安装程序
+### 权限说明
+linux下一切皆文件，每一个文件都有权限，格式如`rwxrwxr--`，分为三组，分别是用户权限（owner），组员全下（group），其他用户全下（other）。
+每组分别表示读、写、执行权限。
+系统中所有的文件，root都拥有rwx权限，大部分软件默认安装路径是 /usr/bin 或 /usr/local/bin 或 /usr/local/sbin，普通用户没有这些目录的写权限。
+非root用户会安装到/home目录下。
+
+### 安全注意事项
+1. 程序依赖的软件包通过root用户来安装，非root用户用户执行权限。
+2. 在安装配置时，需要指定安装目录前缀prefix，如:
+```
+./configure -prefix=/path/to/bin
+```
+3. 将执行路径添加到环境变量PATH，
+```
+export PATH=/path/to/bin:$PATH
+```
+次命令只在本次回话中生效，永久有效需要写入用户根目录下面的.bashrc文件中。	
