@@ -241,7 +241,7 @@ auth_basic和auth_basic_user_file指定验证通过的请求可以通过。
 
 * open_file_cache
 
-该指令启用对打开文件的信息的缓存，并不直接存储文件本身。包括如（** 文件描述 **,** 文件和目录是否存在 **,** 文件错误，如权限错误，文件不存在等等 **），
+该指令启用对打开文件的信息的缓存，并不直接存储文件本身。包括如（__文件描述__,**文件和目录是否存在**,**文件错误，如权限错误，文件不存在等等**），
 指令有两个参数1，max=X,X表示缓存存储对象的最大数量。如果这个数量达到，就的对象会被删除。2，inactive=Y,Y表示缓存存储对象的最大时间，默认情况下，Nginx
 会在清除缓存之前等待60s。如果缓存被访问一次，那么缓存时间会重置。如果缓存对象被访问次数超过open_file_cache_min_uses，缓存将不会被清空（除非内存用完清除旧对象）。
 语法：`open_file_cache max=X [inactive=Y] | off`，默认为off。
@@ -304,174 +304,125 @@ HTTP模块中定义了大量的变量，但是只有一部分指令接收支持�
 这些变量可以分为三种，第一：客户端请求header中的变量，第二：返回给客户端的响应header中的变量，第三：Nginx自己生产的变量。
 
 ### 请求Header变量
-* $http_host 
+* $http_host 请求头中的"Host"，客户端请求的主机名。
 
-请求头中的"Host"，客户端请求的主机名。
-* $http_user_agent 
+* $http_user_agent 请求头中的"User-Agent",描述web浏览器信息
 
-请求头中的"User-Agent",描述web浏览器信息
-* $http_referer 
+* $http_referer 请求头中的"Referer",描述客户端前一个页面的URL。
 
-请求头中的"Referer",描述客户端前一个页面的URL。
-* $http_via 
+* $http_via 请求头中的"via",描述客户端可能使用的代理。
 
-请求头中的"via",描述客户端可能使用的代理。
-* $http_x_forwarded_for 
+* $http_x_forwarded_for 请求头中的“X-Forwarded-For”，如果客户端使用了代理，该参数表示客户端真正的IP地址。
 
-请求头中的“X-Forwarded-For”，如果客户端使用了代理，该参数表示客户端真正的IP地址。
-* $http_cookie 
+* $http_cookie 请求头中的“Cookie”。
 
-请求头中的“Cookie”。
 * $http_... 
 
 其他header中的属性，名称需要对应。名称需要小写。“-”会被替换为“_”。
 
 ### 响应返回中的Header变量
-* $sent_http_content_type 
+* $sent_http_content_type 响应头中的“Content-Type”。
 
-响应头中的“Content-Type”。
-* $sent_http_content_length 
+* $sent_http_content_length 响应头中的“Content_length”。
 
-响应头中的“Content_length”。
-* $sent_http_location 
+* $sent_http_location 响应头中的“Location”，表示需要的资源location和请求中指定的location不同。
 
-响应头中的“Location”，表示需要的资源location和请求中指定的location不同。
-* $sent_http_last_modified 
+* $sent_http_last_modified 响应头中的“Last-Modified”，表示请求资源修改的日期。
 
-响应头中的“Last-Modified”，表示请求资源修改的日期。
-* $sent_http_connection 
+* $sent_http_connection 响应头中的“Connection”，表示连接是否保持alive或者已经关闭。
 
-响应头中的“Connection”，表示连接是否保持alive或者已经关闭。
-* $sent_http_keep_alive 
+* $sent_http_keep_alive 响应头中的“Keep-Alive”，表示连接保持alive的持续时间。
 
-响应头中的“Keep-Alive”，表示连接保持alive的持续时间。
-* $sent_http_transfer_encoding 
+* $sent_http_transfer_encoding 响应头中的“Transfer-Encoding”，表明响应体的编码方式（如，gzip）。
 
-响应头中的“Transfer-Encoding”，表明响应体的编码方式（如，gzip）。
-* $sent_http_cache_control 
+* $sent_http_cache_control 响应头中的“Cache-Control”，表明浏览器是否应该缓存资源。
 
-响应头中的“Cache-Control”，表明浏览器是否应该缓存资源。
 * $sent_http_... 
 
 其他响应头中的属性，名称需要对应。名称需要小写。“-”会被替换为“_”。
 
 ### Nginx提供的指令
-* $arg_XXX 
+* $arg_XXX 获取查询字符串（Get 参数），XXX为参数名称。
 
-获取查询字符串（Get 参数），XXX为参数名称。
-* $args 
+* $args 所有的查询参数合并在一起。
 
-所有的查询参数合并在一起。
-* $binary_remote_addr 
+* $binary_remote_addr 客户端的IP地址二进制表示（4字节）。
 
-客户端的IP地址二进制表示（4字节）。
-* $body_bytes_sent 
+* $body_bytes_sent 响应body中字节的数量。
 
-响应body中字节的数量。
-* $connection_requests 
+* $connection_requests 当前连接处理请求的数量。
 
-当前连接处理请求的数量。
-* $content_length 
+* $content_length 和HTTP header中的“Content-Length”相同。
 
-和HTTP header中的“Content-Length”相同。
-* $content_type 
+* $content_type 和HTTP header中的“Content-Type”相同。
 
-和HTTP header中的“Content-Type”相同。
-* $cookie_XXX 
+* $cookie_XXX 获取cookie中的属性，XXX为属性名称。
 
-获取cookie中的属性，XXX为属性名称。
+* $document_root 返回当前请求中的root指令的值。
 
-* $document_root 
+* $document_uri 返回当前指令的URI,如果做了内部的redirect，那么它和原请求的地址可能不同。和$uri变量相同。
 
-返回当前请求中的root指令的值。
-* $document_uri 
+* $host 和HTTP请求头中的“Host”相同。
 
-返回当前指令的URI,如果做了内部的redirect，那么它和原请求的地址可能不同。和$uri变量相同。
-* $host 
+* $hostname 服务器的系统主机名。
 
-和HTTP请求头中的“Host”相同。
-* $hostname 
+* $https HTTPS连接设置为on，其他为空。
 
-服务器的系统主机名。
-* $https 
-
-HTTPS连接设置为on，其他为空。
-* $is_args 
-
-如果$args有参数，那么$is_args等于？。如果$args为空，那么$is_args也为空。可以用这个参数结合$args构建URI。如：
+* $is_args 如果$args有参数，那么$is_args等于？。如果$args为空，那么$is_args也为空。可以用这个参数结合$args构建URI。如：
 `index.php$is_args$args`。
-* $limit_rate 
 
-返回每个链接传输速率的限制。也可以使用set设置这个值，如：
+* $limit_rate 返回每个链接传输速率的限制。也可以使用set设置这个值，如：
 ```
 set $limit_rate 128k
 ```
-* $nginx_version 
+* $nginx_version 返回nginx版本。
 
-返回nginx版本。
-* $pid 
+* $pid 返回nginx的进程id。
 
-返回nginx的进程id。
-* $query_string 
+* $query_string 和$args相同。
 
-和$args相同。
-* $remote_addr 
+* $remote_addr 返回客户端ip地址。
 
-返回客户端ip地址。
-* $remote_port 
+* $remote_port 返回客户端ip端口。
 
-返回客户端ip端口。
-* $realpath_root 
+* $realpath_root 返回客户端请求中的文档根路径。
 
-返回客户端请求中的文档根路径。
-* $request_body 
+* $request_body 客户端请求体。
 
-客户端请求体。
-* $request_body_file 
+* $request_body_file 如果设置了请求body存储（参考指令client_body_in_file_only）这个变量表示临时文件的存储路劲。
 
-如果设置了请求body存储（参考指令client_body_in_file_only）这个变量表示临时文件的存储路劲。
-* $request_completion 
+* $request_completion 如果请求完成，返回OK，否则返回空字符串。
 
-如果请求完成，返回OK，否则返回空字符串。
-* $request_filename 
+* $request_filename 返回当前请求中全文件名。
 
-返回当前请求中全文件名。
-* $request_method 
+* $request_method 请求方法。
 
-请求方法。
-* $request_uri 
+* $request_uri 请求的原始url，和$document_uri/$uri不同，在所有处理过程中保持不变。
 
-请求的原始url，和$document_uri/$uri不同，在所有处理过程中保持不变。
-* $scheme 
+* $scheme http或者https。
 
-http或者https。
-* $server_addr 
+* $server_addr 服务器的IP地址。每次使用会执行一次系统调用，会影响系统性能。
 
-服务器的IP地址。每次使用会执行一次系统调用，会影响系统性能。
-* $server_name 
+* $server_name 返回server_name属性的值。
 
-返回server_name属性的值。
-* $server_port 
+* $server_port 返回服务器socket的端口。
 
-返回服务器socket的端口。
-* $server_protocol 
+* $server_protocol 返回协议和版本，如HTTP/1.1。
 
-返回协议和版本，如HTTP/1.1。
-* $time_iso8601,$time_local 
+* $time_iso8601,$time_local 返回ISO8601和本地格式化的时间。
 
-返回ISO8601和本地格式化的时间。
-* $uri 
-
-和$document_uri一样。
+* $uri 和$document_uri一样。
 
 ## Location模块
 ### 修饰符
 * =修饰符 
 
 等号修饰符，表示精确匹配，可以允许参数。如`location = /abcd` 可以匹配如下情况
-	1. `/abcd`
-	2. `/ABCD` 文件系统大小写不敏感的情况下支持。
-	3. `/abcd?param1&param2`
+
+1. `/abcd`。
+2. `/ABCD` 文件系统大小写不敏感的情况下支持。
+3. `/abcd?param1&param2`
+	
 * 无修饰符 
 
 匹配以设置的location开头的路径。
