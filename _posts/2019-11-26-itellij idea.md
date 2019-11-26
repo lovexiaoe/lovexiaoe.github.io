@@ -141,15 +141,16 @@ ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cf
 - Abbreviation: *
 - Description comment for method
 - Template Text 
-    ```
-     *
-     * @Description: 
-     * @Author: zhaoyu
-     * @Date: $date$
-     * $params$
-     * @Return $return$
-     */
-    ```
+```java
+ *
+ * @Description: 
+ * @Author: zhaoyu
+ * @Date: $date$
+ * $params$
+ * @Return $return$
+ */
+```
+
 - Template Text下面的Application in... 点击change 选择java。
 - Edit variables 选择变量对应的函数表达式，
 
@@ -165,6 +166,7 @@ ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cf
 
 ### Header模板 ###
 ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
+
 - 添加内容如下
     ```java
      /**
@@ -173,6 +175,7 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
      * @Date: ${DATE}
      */
     ```
+  
 - 勾选Enable Live Templates
 
 ## devtools 热部署配置 ###
@@ -193,6 +196,7 @@ spring
 ```
 
 3. idea配置
+
     - ctrl+alt+s 打开配置，在compiler中勾选build project automatically。
     - 快捷键：ctrl + shift + alt + / 选择Registry, 勾选 Compiler autoMake allow when app running
 
