@@ -87,13 +87,14 @@ category: java
 ### Lombok安装 ###
 1. File-->settings-->Plungins搜索Lombok插件并安装，重启。
 2. 在pom文件中添加依赖。
-```XML
-<dependency>
-   <groupId>org.projectlombok</groupId>
-   <artifactId>lombok</artifactId>
-   <version>1.18.2</version>
-</dependency>
-```
+
+    ```XML
+    <dependency>
+       <groupId>org.projectlombok</groupId>
+       <artifactId>lombok</artifactId>
+       <version>1.18.2</version>
+    </dependency>
+    ```
 
 ### 安装 Free Mybatis ###
 1. File-->settings-->Plungins搜索free Mybatis插件并安装，重启。
@@ -183,20 +184,22 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
 
 ## devtools 热部署配置 ###
 1. 在pom.xml中添加依赖
-```
-dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-devtools</artifactId>
-   <optional>true</optional>
-</dependency>
-```
+
+    ```
+    dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-devtools</artifactId>
+       <optional>true</optional>
+    </dependency>
+    ```
 2. 在yml中配置如下
-```git
-spring
-  devtools:
-    restart:
-      enabled: true #是否支持热部署
-```
+
+    ```git
+    spring
+      devtools:
+        restart:
+          enabled: true #是否支持热部署
+    ```
 
 3. idea配置
 
