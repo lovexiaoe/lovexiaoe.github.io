@@ -1,6 +1,7 @@
 ---
 title: nginx-http 模块
 published: true
+category: nginx
 ---
 
 
