@@ -141,21 +141,23 @@ ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cf
 - Abbreviation: *
 - Description comment for method
 - Template Text 
-```java
- *
- * @Description: 
- * @Author: zhaoyu
- * @Date: $date$
- * $params$
- * @Return $return$
- */
-```
+
+    ```
+     *
+     * @Description: 
+     * @Author: zhaoyu
+     * @Date: $date$
+     * $params$
+     * @Return $return$
+     */
+    ```
 
 - Template Text下面的Application in... 点击change 选择java。
 - Edit variables 选择变量对应的函数表达式，
 
     - date:date(),
     - params
+    
         ```groovy
           groovyScript(" def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList();  for(i = 0; i < params.size(); i++) { if(i!=0)result+= ' * '; result+='@Param ' + params[i] + ((i < (params.size() - 1)) ? '\\n' + '\\t' : '');}; return result", methodParameters())
         ```
@@ -168,6 +170,7 @@ ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cf
 ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
 
 - 添加内容如下
+
     ```java
      /**
      * @Description: 
