@@ -47,7 +47,33 @@ server_name _ "";
 
 * root
 
-定义文件的根目录。默认值html。
+root可配置在http,sever,location,if中，定义文件的根目录。默认值html。
+
+* alias
+
+alias可配置在location中，必须以“/”结束。和root的主要区别是nginx如何解析location后面的url，root的处理结果是：root路径+location路径。
+alias的处理结果是：使用alias路径替换location路径。如：
+```
+location /t/ {
+    root /www/root/html/;
+}
+```
+如果请求访问的是`/t/a.html`，服务器将返回`/www/root/html/t/a.html`。
+```
+location ~^/download/(.*)$ {，
+   root /home/webdata/www/$1
+}
+```
+如果请求的是`/download/test.tar.gz`,服务器将返回`/home/webdata/www/download/test.tar.gz`。 
+```
+location /t {
+    alias /www/root/html/new_t/;  #这里必须以/结尾。
+}
+```
+如果请求访问的是`/t/a.html`，服务器将返回`/www/root/html/new_t/a.html`。
+
+所以，一般情况下，在nginx配置中的良好习惯是：
+ 在location `/`中配置root目录； 在location `/path`中配置alias虚拟目录。alias不用校验路径是否存在。
 
 * error_page
 
@@ -435,7 +461,7 @@ location ~ ^/abcd$ {}
 ```
 * ~*修饰符
 
-大小写不铭感匹配。
+大小写不敏感匹配。
 * ^~修饰符
 
 和无修饰符类似，匹配以设置的location开头的路径，不同的是如果表达式匹配，Nginx停止搜索其他的匹配。
