@@ -517,3 +517,62 @@ server {
 }
 ```
 当访问`http://website.com/document `时，第一个location是优先级3，第二个优先级是4.所以会匹配第一个。
+
+### nginx proxy_redirect
+proxy_redirect用于修改后端返回的response header中的refresh或location。当后端服务有301，302跳转，二级目录有不一致的情况时，
+需要设置proxy_redirect做转换。      
+proxy_redirect可以设置三个值，(default|off|redirect replacement)默认是default，是根据location属性和proxy_pass属性决定的，
+如：
+```
+location /one/ {
+  proxy_pass       http://upstream:port/two/;
+  proxy_redirect   default;
+}
+```
+相当于 
+```
+proxy_redirect http://upstream:port/two/ /one/
+```
+如后端应用Java:
+```
+LOG.debug("sendRedirect host in header "+req.getHeader("Host")); 
+response.sendRedirect("t2"); 
+```
+1. 浏览器通过https + 域名请求后端 http应用， 通过nginx的域名访问:`https://www.xxx.com.cn/test/trd`，      
+默认配置的情况下:
+```
+server {	
+    listen      443;	
+    ssl on;	
+    server_name www.xxx.com.cn;	
+    location /test/ {		
+        proxy_pass http://10.65.192.xx:8080/;	
+    }
+}
+```
+后端Java执行的情况为
+```
+LOG.debug("sendRedirect host in header " + req.getHeader("Host")); 
+//10.65.192.xx:8080
+response.sendRedirect("t2");
+//http://10.65.192.xx:8080/t2
+```
+不需要设置proxy_redirect，nginx会将`http://10.65.192.xx:8080/t2`转成`https://www.xxx.com.cn/test/t2`
+2. 如果在header设置了Host参数：`proxy_set_header Host $host`;
+```
+LOG.debug("sendRedirect host in header " + req.getHeader("Host")); 
+//www.xxx.com.cn
+response.sendRedirect("t2"); 
+//http://www.xxx.com.cn/t2
+nginx需要配置proxy_redirect
+server {	
+    listen      443;
+    ssl on;	
+    server_name www.xxx.com.cn;	
+    location /test/ {
+        proxy_pass http://10.65.192.xx:8080/;		
+        proxy_redirect http://$host/
+        https://$host:$server_port/test/;	
+    }
+}
+```

@@ -207,3 +207,4 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
     - 快捷键：ctrl + shift + alt + / 选择Registry, 勾选 Compiler autoMake allow when app running
 
 4. 重启项目，完成配置。
+
