@@ -9,7 +9,9 @@ java 插件为工程定义了许多默认值，如Java源文件位置。如果�
 Gradle 也允许你自定义项目中的一些规则。
 使用java插件在脚本中添加如下代码：
 ```groovy
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
 ```
 #### 构建
 * 构建项目
@@ -87,8 +89,10 @@ include "shared", "api", "services:webservice", "services:shared"
 对多项目构建而言，总有一些共同的配置.在本例中，我们会在根项目上采用配置注入的方式定义一些公共配置。
 ```groovy
 subprojects {
-    apply plugin: 'java'
-    apply plugin: 'eclipse-wtp'
+    plugins {
+        id 'java'
+        id 'eclipse-wtp'
+    }
     
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'

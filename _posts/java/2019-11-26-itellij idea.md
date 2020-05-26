@@ -136,7 +136,7 @@ category: java
 打开设置ctrl+alt+s，Editor->Code Style，Schema Default->general->Line Separator 改为Unix 格式。Schema Project->general->Line Separator 改为Unix 格式。
 
 ## 模板 ##
-### 方法注释模板 ##
+### 方法注释模板 ###
 ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cfm。
 模板的各参数如下：
 - Abbreviation: *
@@ -182,7 +182,7 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
   
 - 勾选Enable Live Templates
 
-## devtools 热部署配置 ###
+## devtools 热部署配置 
 1. 在pom.xml中添加依赖
 
     ```
@@ -192,7 +192,7 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
        <optional>true</optional>
     </dependency>
     ```
-2. 在yml中配置如下
+2. 在yml中配置如下,默认为true。
 
     ```git
     spring
@@ -208,3 +208,8 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
 
 4. 重启项目，完成配置。
 
+## 自动保存的密码修改
+打开settings，搜索passwords可以看到idea默认将所有的密码保存在keepass中，选择do not save选项。重启idea，
+然后保存的密码会被清除，在中心输入密码后，将passwords的设置回到keepass。则密码修改成功，如下图。
+
+![](/assets/java/idea-password-reset.png)
