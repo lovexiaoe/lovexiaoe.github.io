@@ -159,6 +159,34 @@ public class MyService {
 }
 ```
 
+#### 从配置文件中加载
+配置文件可以使用@PropertySource标注
+```java
+@Data
+@Component
+@ConfigurationProperties(prefix = "cnf")
+@PropertySource(value = "ToolConfig.properties")
+public class ToolConfig {
+    private String redisHost;
+    //@Value("${cnf.version}")
+    //private String version;
+}
+```
+
+#### 从pom.xml中获取配置
+springboot无法直接读取pom.xml文件中的变量，需要通过properties文件变量做为沟通桥梁
+```properties
+cnf.version=1.0.0
+cnf.redisHost=@cnf.redisHost@
+```
+如上图中的cnf.redisHost，是在pom.xml中的cnf.redisHost标签
+```xml
+<properties>
+    <cnf.redisHost>192.168.0.6</cnf.redisHost>
+</properties>
+```
+
+
 #### 配置属性转换
 ##### 时间段转换
 springboot支持是时间段表示，默认是ms，如下：
