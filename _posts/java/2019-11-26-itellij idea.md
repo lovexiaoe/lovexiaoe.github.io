@@ -194,8 +194,8 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
     ```
 2. 在yml中配置如下,默认为true。
 
-    ```git
-    spring
+    ```yaml
+    spring:
       devtools:
         restart:
           enabled: true #是否支持热部署
@@ -213,3 +213,6 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
 然后保存的密码会被清除，在中心输入密码后，将passwords的设置回到keepass。则密码修改成功，如下图。
 
 ![](/assets/java/idea-password-reset.png)
+
+## 自动导入
+打开设置（ctrl+alt+s），搜索‘auto import’ 勾选Add unambiguous imports on the fly 和 optimize imports on the fly 两项。
