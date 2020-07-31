@@ -161,3 +161,73 @@ docker run --rm test:latest date
 Thu Jul 30 08:37:00 UTC 2020
 ```
 
+### ONBUILD
+当该镜像被其他镜像引用时，该命令定义了构建时需要执行的指令。可使用该命令编译由下层layer提供的程序。如：
+```shell script
+ONBUILD COPY [".", "/var/myapp"]
+ONBUILD RUN go build /var/myapp
+```
+ONBUILD会被作为metadata保存在镜像中，当其他Dockerfile使用FROM指令引用该镜像时，会在FROM指令后，和下个指令执行前执行ONBUILD指令。
+
+先创建一个上游的Dockerfile，名称为upstream.df。在其中定义一个ONBUILD命令。
+```shell script
+FROM busybox:latest
+WORKDIR /app
+RUN touch /app/base-evidence
+ONBUILD RUN ls -al /app
+```
+再创建一个下游的Dockerfile，名称为downstream.df。
+```shell script
+FROM zhaoyu/upstream
+RUN touch downstream-evidence
+```
+构建上游镜像
+```shell script
+docker image build -t zhaoyu/upstream -f upstream.df .
+```
+构建下游镜像输出如下，可以看到`ONBUILD RUN ls -al /app`在FROM后立即执行。
+```
+Step 1/2 : FROM zhaoyu/upstream
+# Executing 1 build trigger
+---> Running in 591f13f7a0e7
+total 0
+drwxr-xr-x 1 root root 4096 Jun 18 03:12 .
+drwxr-xr-x 1 root root 4096 Jun 18 03:13 ..
+-rw-r--r-- 1 root root 0 Jun 18 03:12 base-evidence
+Removing intermediate container 591f13f7a0e7
+---> 5b434b4be9d8
+Step 2/2 : RUN touch downstream-evidence
+---> Running in a42c0044d14d
+Removing intermediate container a42c0044d14d
+---> e48a5ea7b66f
+```
+
+### 定义容器的版本
+在Dockerfile定义版本命令如下：
+```shell script
+ARG VERSION=0.6
+```
+在命令中使用选项`--build-arg`：
+```shell script
+version=0.6; docker image build -t dockerinaction/mailer-base:${version} \
+-f mailer-base.df --build-arg VERSION=${version} .
+```
+
+### 健康检查
+docker容器拥有三种状态。
+* 0:success-容器健康，可以正常使用。
+* 2:unhealthy-容器不能正常工作。
+* 3:reserved-系统保留，不能使用。
+
+Dockerfile中使用HEALTHCHECK命令：
+```shell script
+FROM nginx:1.13-alpine
+HEALTHCHECK --interval=5s --retries=2 CMD nc -vz -w 2 localhost 80 || exit 1
+```
+`||`表示或，如果命令`nc -vz -w 2 localhost 80`返回任何非0的状态，那么执行`exit 1`。
+
+使用命令参数`--health-cmd`进行健康检查。
+```shell script
+docker container run --name=healthcheck_ex -d --health-cmd='nc -vz -w 2 localhost 80 || exit 1' nginx:1.13-alpine
+```
+
