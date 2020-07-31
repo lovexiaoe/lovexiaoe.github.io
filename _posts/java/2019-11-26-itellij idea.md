@@ -80,6 +80,11 @@ category: java
 12. Ctrl+Alt+V：根据表达式创建变量。
 13. Ctrl+Alt+F：根据表达式添加该类的字段。
 
+### bookmark ###
+1. F11: 书签(标记/取消)。
+1. Ctrl+F11: 符号型书签(标记/取消)。
+1. shift+F11: 查看书签列表。
+
 ## 插件安装 ##
 ### 社区版安装spring插件 ###
 在file'settings'Plungins中搜索spring找到spring Assistant。选择下载，然后就可以在new project的时候找到合适的模板了。
