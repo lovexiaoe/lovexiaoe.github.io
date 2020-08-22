@@ -159,6 +159,14 @@ public class MyService {
 }
 ```
 
+#### 配置map
+```yaml
+tes:
+  maps:
+    key1: 15
+    key2: 2
+```
+
 #### 从配置文件中加载
 配置文件可以使用@PropertySource标注
 ```java

@@ -13,6 +13,7 @@ docker-compose版本地址：`https://github.com/docker/compose/releases`。
 sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" \
  -o /usr/local/bin/docker-compose
 ```
+如果下载失败，则从github中下载，然后上传并更名为`/usr/local/bin/docker-compose`，继续执行下面的命令。
 1. 赋执行权限：
 ```shell script
 sudo chmod +x /usr/local/bin/docker-compose
