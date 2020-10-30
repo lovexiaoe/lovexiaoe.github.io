@@ -23,7 +23,7 @@ category: springboot
 </dependency>
 ```
 ### spring-boot-starter-parent
-mavne可以从spring-boot-starter-parent继承默认的特性，如下：
+maven可以从spring-boot-starter-parent继承默认的特性，如下：
 1. 默认的java1.8编译级别。
 2. UTF-8 代码编码。
 3. 提供了一些列定制的依赖清单。
@@ -113,8 +113,32 @@ my.number.in.range=${random.int[1024,65536]}
 ```
 random.int* 不包括最大值在内。
 
+#### @Value配置默认值
+```java
+@Value("${NamesrvAddr:192.168.0.1}")
+private String namesrvAddr;
+```
+
+#### @Value配置list和map
+@Value只能处理单条属性，没有强的类型验证，在yaml格式配置map和list时，会比较麻烦。在配置list或者map时，推荐使用
+ConfigurationProperties注解。
+```java
+@Value("#{'${scio.cloud.list}'.split(',')}")
+private List<String> list;
+
+@Value("#{${scio.cloud.maps}}")
+private Map<String,String> maps;
+```
+yaml文件如下，这里需要使用如下格式，使用yaml的冒号格式会报错。
+```yaml
+scio.cloud.list: topic1,topic2,topic3
+scio.cloud.maps: "{key1: 'value1', key2: 'value2'}"
+```
+
+
 #### 类型安全的配置属性值。
 通过`@Value("${property}")`配置属性会有一些麻烦，springboot提供了ConfigurationProperties注解，引入了强类型管理和验证。
+需要属性的设置setter方法。
 ```java
 @Component
 @ConfigurationProperties("acme")
@@ -127,6 +151,7 @@ public class AcmeProperties {
 		private String password;
 		private List<String> roles = new ArrayList<>(Collections.singleton("USER"));
 	}
+    private Map<String,String> maps;
 }
 ```
 其yml配置如下：
@@ -138,6 +163,9 @@ acme:
 		roles:
 		  - USER
 		  - ADMIN
+    maps: 
+        key1: value1
+        key2: value2
 ```
 在其他bean中使用配置，可以直接注入，如下：
 ```java
@@ -159,14 +187,6 @@ public class MyService {
 }
 ```
 
-#### 配置map
-```yaml
-tes:
-  maps:
-    key1: 15
-    key2: 2
-```
-
 #### 从配置文件中加载
 配置文件可以使用@PropertySource标注
 ```java
@@ -176,8 +196,7 @@ tes:
 @PropertySource(value = "ToolConfig.properties")
 public class ToolConfig {
     private String redisHost;
-    //@Value("${cnf.version}")
-    //private String version;
+    private String version;
 }
 ```
 
