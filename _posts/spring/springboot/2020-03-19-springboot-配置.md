@@ -114,7 +114,7 @@ my.number.in.range=${random.int[1024,65536]}
 random.int* 不包括最大值在内。
 
 #### @Value配置默认值
-```java
+```
 @Value("${NamesrvAddr:192.168.0.1}")
 private String namesrvAddr;
 ```
@@ -122,7 +122,7 @@ private String namesrvAddr;
 #### @Value配置list和map
 @Value只能处理单条属性，没有强的类型验证，在yaml格式配置map和list时，会比较麻烦。在配置list或者map时，推荐使用
 ConfigurationProperties注解。
-```java
+```
 @Value("#{'${scio.cloud.list}'.split(',')}")
 private List<String> list;
 
