@@ -1,0 +1,271 @@
+= adoc语法
+
+一个等号表示文章标题
+
+=== 标题1
+==== 标题2
+
+换行，第一行 +
+第二行
+
+上面空行也可以换行。
+
+一个常规的段落
+
+ 以一个空格开头的行为文本类型的段落。 文本型段落有预设的格式，
+ 会使用固定宽度的字体显示。不会自动换行，会按照现有的格式显示。
+ 同时，上下需要一个空行隔开。
+
+另一个常规的段落
+
+=== 警告
+NOTE: 这里是普通的笔记。
+
+TIP: 提醒。
+
+IMPORTANT: 重要提醒。
+
+WARNING: 注意。
+
+CAUTION: 警告
+
+=== 文本格式
+_斜体段落_ +
+行内的__斜体__表示。 +
+*粗体段落* +
+行内的**粗体**表示。
+*_段落粗斜体_* +
+行内的**__粗斜体__**表示。 +
+`高亮显示`, +
+行内的``高亮``表示。 +
+`_高亮斜体_` +
+行内``__高亮斜体__``表示 +
+`*高亮粗体*` +
+行内``**高亮粗体**``表示。 +
+`*_高亮粗体斜体_*` +
+行内``**__高亮粗体斜体__**``表示。
+
+==== 自定义格式
+井号的格式如下，#被井号包裹的内容#
+
+字体 [small]#缩小# 表示，中文两边需要隔开。
+
+==== 上角标和脚注
+这里是^上角标^表示
+
+这里是~下角标~表示
+
+==== 引用
+这是是引号的使用。
+
+[[title-id]]
+=== 定义锚点id
+
+
+=== 引入文件中的内容
+
+include::2020-11-24-include.adoc[]
+
+https://lovexiaoe.github.io/bit
+
+=== 从一个URI中引入内容
+:asciidoctor-source: https://raw.githubusercontent.com/asciidoctor/asciidoctor/master
+include::{asciidoctor-source}/README.adoc[]
+
+include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/master/README.adoc[]
+
+=== 水平线
+'''
+
+=== 分页符
+<<<
+
+=== 列表
+==== 无序列表
+* 无序列表1
+* 无序列表2
+* 无序列表3
+** 二级无序列表1
+** 二级无序列表2
+*** 三级无序列表
+
+==== 清单
+- [*] 勾选样式
+- [x] 勾选样式2
+- [ ] 未勾选样式
+
+==== 有序列表
+. 一级有序列表
+.. 二级有序列表
+... 三级有序列表
+
+==== 单行标签列表
+第一项:: 第一项的定义
+
+第二项:: 第二项的定义
+
+==== 常见问题以及解答
+[qanda]
+什么是Asciidoctor?::
+一个Ruby语言的AsciiDoc 处理程序。
+
+哪里可以找到Asciidoc的文档？::
+https://asciidoctor.cn/docs
+
+==== 混合样式列表
+操作系统::
+ Linux:::
+    . Fedora
+      * 桌面版
+    . Ubuntu
+      * 桌面版
+      * 服务器
+
+==== 复杂内容列表
+* 每一个列表项可以包含多个段落， +
+列表中的另一个段落，使用加号连接。
+
+* Adoc 列表可以包含任何复杂的内容，如列表。
++
+[cols="2",options="header"]
+|===
+|应用
+|语言
+
+|AsciiDoc
+|Python
+
+|Asciidoctor
+|Ruby
+|===
+
+=== 连接
+==== 外部连接
+http://asciidoctor.org - automatic!
+
+http://asciidoctor.org[Asciidoctor]
+
+==== 带空格以及特殊字符的连接
+link:++http://example.org/?q=[a b]++[包含空格的连接]
+
+link:http://example.org/?q=%5Ba%20b%5D[包含特殊字符的连接]
+
+==== Windows路径
+link:\\server\share\whitepaper.pdf[Whitepaper]
+
+==== 相对路径
+link:index.html[Docs]
+
+==== 电子邮件
+devel@xxx.org
+
+mailto:devel@xxx.org[邮件地址]
+
+==== 内部交叉引用
+查看<<title-id>> 的使用
+
+=== 图片
+image::http://asciidoctor.org/images/octocat.jpg[Github mascot]
+
+=== 视频
+video::video_file.mp4[]
+
+video::video_file.mp4[width=640, start=60, end=140, options=autoplay]
+
+=== 源码
+==== 行内代码
+Reference code like `types` or `methods` inline.
+
+==== 代码行
+ 使用一个空格缩进，插入一行代码。
+
+==== 代码块
+....
+代码块
+....
+
+==== 带标题的代码
+.test.java
+[source,java]
+----
+public static void main(String[] args){
+    System.out.println("测试");
+}
+----
+
+==== 加标注的代码
+.test.java
+[source,java]
+----
+public static void main(String[] args){ // <1>
+    System.out.println("测试"); // <2>
+}
+----
+<1> main方法
+<2> 打印
+
+
+==== 在文件中引入代码块
+.test.java
+[source,java]
+----
+include::test.java[]
+----
+
+=== 更多分隔块
+==== 侧边栏
+.AsciiDoc 历史
+****
+AsciiDoc 在2002年被发布.
+It was designed from the start to be a shorthand syntax
+for producing professional documents like DocBook and LaTeX.
+****
+
+.AsciiDoc 历史
+====
+AsciiDoc 在2002年被发布.
+It was designed from the start to be a shorthand syntax
+for producing professional documents like DocBook and LaTeX.
+====
+
+=== 引用块
+[quote, 作者，孔子]
+____
+三人行必有我师...
+____
+
+[quote, Albert Einstein]
+A person who never made a mistake never tried anything new.
+
+____
+A person who never made a mistake never tried anything new.
+____
+
+=== 注释
+// A single-line comment.
+
+////
+A multi-line comment.
+Notice it's a delimited block.
+////
+
+=== 表格
+
+|===
+|Name of Column 1 |Name of Column 2
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|===
+
+=== 转义符
+反斜杠为转义符
+
+\*Stars* is not rendered as bold text.
+The asterisks around the word are preserved.
+
+=== 目录
+
