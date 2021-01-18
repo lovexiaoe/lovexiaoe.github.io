@@ -147,33 +147,32 @@ category: java
 ### 方法注释模板 ###
 ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cfm。
 模板的各参数如下：
-- Abbreviation: *
+- Abbreviation: *c
 - Description comment for method
 - Template Text 
-
+    模板不能以/*开头，不然取不到方法参数和返回值。$END$ 内建变量，用于定义鼠标，使用tab切换需要
+    编辑的变量。
     ```
-     *
-     * @Description: 
-     * @Author: zhaoyu
-     * @Date: $date$
-     * $params$
+    **
+     * $END$
+     * @author: zhaoyu
+     $params$
      * @Return $return$
      */
     ```
 
-- Template Text下面的Application in... 点击change 选择java。
-- Edit variables 选择变量对应的函数表达式，
+- Template Text下面的Application in... 点击change 选择java-Comment。
+- Edit variables 选择变量对应的函数表达式，如果希望变量存在后不再编辑，选中Skip if defined。
 
-    - date:date(),
     - params
     
         ```groovy
-          groovyScript(" def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList();  for(i = 0; i < params.size(); i++) { if(i!=0)result+= ' * '; result+='@Param ' + params[i] + ((i < (params.size() - 1)) ? '\\n' + '\\t' : '');}; return result", methodParameters())
+          groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) {result+='* @param ' + params[i] + ((i < params.size() - 1) ? '\\r\\n' : '')}; return result", methodParameters())
         ```
-    - return-methodReturnTypes。
+    - return:methodReturnTypes()。
     
-其他选择默认。保存。
-然后输入`/**` 按tab键，会自动生产方法的注释。
+Options选择Reformat according to style。保存。
+然后输入`/*c` 按tab键，会自动生产方法的注释。
 
 ### Header模板 ###
 ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
