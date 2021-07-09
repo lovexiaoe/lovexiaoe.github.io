@@ -24,6 +24,11 @@ category: java
  1. Ctrl+Shift+Enter：在if、for、函数等等后补上{}或者;使代码语句完整。
  1. Ctrl+]：诸如{}围起来的代码块，使用该快捷键可以快速跳转至代码块的结尾处。
  1. Ctrl+[：快速跳至代码块的开始处。
+ 1. Ctrl+右箭头：移动到下一个word
+ 1. Ctrl+左箭头：移动到上一个word
+ 1. Ctrl+Shift+右箭头：选择到下一个word
+ 1. Ctrl+Shift+左箭头：选择到上一个word
+ 1. Ctrl+Shift+左箭头：选择到上一个word
  1. Shift+Enter：在当前行的下方开始新行。
  1. Ctrl+Alt+Enter：在当前行上方插入新行。
  1. Ctrl+W：选中整个单词。
@@ -87,6 +92,12 @@ category: java
 1. shift+F11: 查看书签列表。
 1. ctrl+shift+1 快速标记/取消书签1
 1. Ctrl+数字：切换到符号型书签
+
+### 其他 ###
+1. Ctrl+Q： 快速文档。
+1. Alt+Shift+click: 对多行添加多个编辑符
+1. Alt+框选：对框选行添加多个编辑符
+1. Alt+Shift+G: 在多行尾部添加编辑符，需要框选。
 
 ## 插件安装 ##
 ### 社区版安装spring插件 ###
