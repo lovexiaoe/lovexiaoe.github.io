@@ -99,6 +99,9 @@ category: java
 1. Alt+框选：对框选行添加多个编辑符
 1. Alt+Shift+G: 在多行尾部添加编辑符，需要框选。
 
+### javadoc注释快捷键
+在设置Keymap-other-fix doc comment中设置快捷键为Alt+D
+
 ## 插件安装 ##
 ### 社区版安装spring插件 ###
 在file'settings'Plungins中搜索spring找到spring Assistant。选择下载，然后就可以在new project的时候找到合适的模板了。
