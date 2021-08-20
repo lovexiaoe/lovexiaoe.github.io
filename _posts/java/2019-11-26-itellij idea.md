@@ -69,6 +69,7 @@ category: java
  10. Shift+F2：在一个文件中定位至前一个错误处。
  11. Ctrl+E 打开最近的文件。
  1. Alt+上/下：方法间快速定位。
+ 1. Alt+F1：Select In，在其他窗口查找并定位。
 
 ### 代码生成 ###
 1. Ctrl+O：重写方法。
@@ -98,6 +99,15 @@ category: java
 1. Alt+Shift+click: 对多行添加多个编辑符
 1. Alt+框选：对框选行添加多个编辑符
 1. Alt+Shift+G: 在多行尾部添加编辑符，需要框选。
+1. Ctrl+Tab: 打开切换器，显示所有工具窗口和编辑窗口。
+1. 在设置Keymap-Tool Windows中设置工具窗口快捷键，根据自己的习惯设置Project和Structure快捷键。
+1. Esc：聚焦编辑窗口。
+
+### 版本控制
+1. Ctrl+T：拉取代码。
+1. Ctrl+Shift+K：推送代码。
+1. Ctrl+K：提交代码。
+1. Alt+~：打开版本控制操作面板。
 
 ### javadoc注释快捷键
 在设置Keymap-other-fix doc comment中设置快捷键为Alt+D
@@ -159,7 +169,7 @@ category: java
 
 ## 模板 ##
 ### 方法注释模板 ###
-ctrl-alt-s打开设置，Editor-Live Templates 添加模板组commnet和模板cfm。
+ctrl-alt-s打开设置，Editor-Live Templates 添加模板组comment和模板cfm。
 模板的各参数如下：
 - Abbreviation: *c
 - Description comment for method
