@@ -247,3 +247,11 @@ ctrl-alt-s打开设置，Editor-File and Code Templates-Include-File Header。
 
 ## 自动导入
 打开设置（ctrl+alt+s），搜索‘auto import’ 勾选Add unambiguous imports on the fly 和 optimize imports on the fly 两项。
+
+## 修改idea项目方法
+1. 更改project的Project name和Project compiler output。
+1. 更改Modules的Name
+1. 删除Artifacts下的两个打包配置（稍后会再自动生成）
+2. 更改pom.xml的artifactId
+3. 退出idea，找到项目路径，更改项目文件名
+1. 然后idea再打开项目
