@@ -16,23 +16,20 @@ category: java
 2. 在设置—》快捷键中重新设置Search Everywhere的快捷键。如alt+s。
 
 ## 常用快捷键 ##
+
+### 取消Win10 ctrl+space 被切换输入法占用。
+1. win+Q打开搜索，找到语言。
+1. 找到键盘—》打开输入语言热键。
+1. 在热键中找到ctrl+space对应的选项，修改为左Alt+Shift+BSLASH，快捷键为你平时用不到的组合。
+1. 重启后，生效。
+
 ### 窗口 ###
  1. Shift+左键 关闭窗口
 
 ### 编辑 ###
-
  1. Ctrl+Shift+Enter：在if、for、函数等等后补上{}或者;使代码语句完整。
- 1. Ctrl+]：诸如{}围起来的代码块，使用该快捷键可以快速跳转至代码块的结尾处。
- 1. Ctrl+[：快速跳至代码块的开始处。
- 1. Ctrl+右箭头：移动到下一个word
- 1. Ctrl+左箭头：移动到上一个word
- 1. Ctrl+Shift+右箭头：选择到下一个word
- 1. Ctrl+Shift+左箭头：选择到上一个word
- 1. Ctrl+Shift+左箭头：选择到上一个word
  1. Shift+Enter：在当前行的下方开始新行。
  1. Ctrl+Alt+Enter：在当前行上方插入新行。
- 1. Ctrl+W：选中整个单词。
- 1. Ctrl+Shift+W：取消选中整个单词。
  1. Ctrl+Z：撤销
  1. Ctrl+Shift+Z：重做
  1. Ctrl+Shift+J：向下合并行。
@@ -41,9 +38,40 @@ category: java
  1. Ctrl+Shift+向上的箭头：上移一行。
  1. Ctrl+Shift+向下的箭头：下移一行。
  1. Ctrl+Shift+V：选择剪切板的内容。
- 1. Ctrl+Shift+Space：显示代码建议
+ 1. Ctrl+Shift+C: 复制文件的文件路径。
+ 1. Ctrl+Shift+Alt+C: 复制文件的包路径。
+ 
+### 光标操作
+1. Ctrl+Shift+M：移动至大括号。
+1. Ctrl+]：诸如{}围起来的代码块，使用该快捷键可以快速跳转至代码块的结尾处。
+1. Ctrl+[：快速跳至代码块的开始处。
+1. Ctrl+右箭头：移动到下一个word
+1. Ctrl+左箭头：移动到上一个word
+1. Ctrl+Shift+右箭头：选择到下一个word
+1. Ctrl+Shift+左箭头：选择到上一个word
+1. Ctrl+Shift+左箭头：选择到上一个word
+1. Alt+Down：下一个方法。
+1. Alt+Up：上一个方法。
+1. Ctrl+PageUp：移动至页面顶部。
+1. Ctrl+PageDown：移动至页面底部。
+1. Ctrl+Home：移动至文件开头。
+1. Ctrl+End：移动至文件结尾。
+1. Home：移动至行首。
+1. End：移动至行尾。
+1. Ctrl+W：选中整个单词。
+1. Ctrl+Shift+W：取消选中整个单词。
 
-
+### 多光标和范围选择
+1. Alt+Shift+Click：添加/删除光标。
+1. Alt+Shift+Insert：切换列选择模式。
+1. 双击Ctrl+Up：（双击后不松开Ctrl）向上插入光标。
+1. 双击Ctrl+Down：（双击后不松开Ctrl）向下插入光标。
+1. Alt+J：选择单位下次出现的位置。
+1. Alt+Shift+J：取消选择单位出现的位置。
+1. Ctrl+Alt+Shift+J：选择单位所有出现的位置。
+1. Alt+Shift+鼠标中键：创建矩形选择。
+1. Alt+鼠标左键：拖拽以创建矩形选择。
+1. Ctrl+Alt+Shift+鼠标左键：拖拽以创建多个矩形选择。
 
 ### 查找 ###
  1. Ctrl+F：当前文件中查找。
@@ -57,7 +85,7 @@ category: java
 
  
 ### 导航 ###
- 1. Ctrl+N(和双击shift作用相同)：查找类文件。
+ 1. Ctrl+N(和双击shift作用相同)：查找 类文件。
  2. Ctrl+Shift+N：查找文件。
  3. Ctrl+U：找到重载或实现方法的父级定义。
  4. Ctrl+F12：显示文件的文件结构。
@@ -68,8 +96,17 @@ category: java
  9. F2：在一个文件中定位至下一个错误处。
  10. Shift+F2：在一个文件中定位至前一个错误处。
  11. Ctrl+E 打开最近的文件。
- 1. Alt+上/下：方法间快速定位。
+ 1. Ctrl+G 跳转至指定行。
  1. Alt+F1：Select In，在其他窗口查找并定位。
+ 1. Ctrl+Alt+Left：上一个编辑位置。
+ 1. Ctrl+Alt+Right：下一个编辑位置。
+ 
+### 辅助编码
+1. Alt+Enter: 显示建议操作。
+1. Ctrl+Space: 代码补全。
+1. Ctrl+Shift+Space: 类型匹配代码补全。
+1. Ctrl+P: 参数信息提示。
+1. Ctrl+Q： 快速文档。
 
 ### 代码生成 ###
 1. Ctrl+O：重写方法。
@@ -95,10 +132,6 @@ category: java
 1. Ctrl+数字：切换到符号型书签
 
 ### 其他 ###
-1. Ctrl+Q： 快速文档。
-1. Alt+Shift+click: 对多行添加多个编辑符
-1. Alt+框选：对框选行添加多个编辑符
-1. Alt+Shift+G: 在多行尾部添加编辑符，需要框选。
 1. Ctrl+Tab: 打开切换器，显示所有工具窗口和编辑窗口。
 1. 在设置Keymap-Tool Windows中设置工具窗口快捷键，根据自己的习惯设置Project和Structure快捷键。
 1. Esc：聚焦编辑窗口。
